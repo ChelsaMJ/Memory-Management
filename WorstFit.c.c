@@ -6,34 +6,24 @@
 int memory[MEMORY_SIZE] = {0};
 
 int allocateWorstFit(int process_id, int process_size) {
-int worst_fit_index = -1;
-int worst_fit_size = 0;
-
 for (int i = 0; i < MEMORY_SIZE; i++) {
 if (memory[i] == 0) {
-int block_size = 0;
 int j = i;
-
-while (j < MEMORY_SIZE && memory[j] == 0) {
-block_size++;
+while (j < i + process_size) {
+if (memory[j] == 1) {
+break;
+}
 j++;
 }
-
-if (block_size >= process_size && block_size > worst_fit_size) {
-worst_fit_index = i;
-worst_fit_size = block_size;
-}
-}
-}
-
-if (worst_fit_index != -1) {
-for (int k = worst_fit_index; k < worst_fit_index + process_size; k++) {
+if (j == i + process_size) {
+for (int k = i; k < i + process_size; k++) {
 memory[k] = process_id;
 }
-return worst_fit_index;
+return i;
 }
-
-return -1; // Allocation failed
+}
+}
+return -1;
 }
 
 void deallocate(int process_id, int start_index, int process_size) {
@@ -46,7 +36,10 @@ memory[i] = 0;
 
 int main() {
 srand(time(NULL));
-int simulation_time = 10;
+int simulation_time;
+printf("Enter the simulation time: ");
+scanf("%d", &simulation_time);
+
 int fragmentation[10] = {0};
 int wasted_memory[10] = {0};
 
@@ -55,7 +48,10 @@ int allocated_processes[5][3] = {{0}};
 int deallocated_processes[3][3] = {{0}};
 
 for (int process_id = 1; process_id <= 5; process_id++) {
-int process_size = rand() % 91 + 10;
+int process_size;
+printf("Enter process size for Process %d (between 10 and 100): ", process_id);
+scanf("%d", &process_size);
+
 int allocation_result = allocateWorstFit(process_id, process_size);
 if (allocation_result != -1) {
 allocated_processes[process_id - 1][0] = process_id;
