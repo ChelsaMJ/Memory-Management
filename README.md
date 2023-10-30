@@ -1,6 +1,6 @@
 # Memory Management Simulation
 
-This project is a simulation of a computer's memory management system. The program includes a memory manager that uses then **First-Fit** memory allocation algorithm to allocate memory blocks to processes. It also includes a mechanism for deallocating memory when a process completes. The simulation runs for a set number of time units and records metrics related to memory fragmentation and wasted memory blocks.
+This project is a simulation of a computer's memory management system. The program includes a memory manager that uses then **First-Fit** memory allocation algorithm to allocate memory blocks to processes. It takes simulation time and process sizes from the user and allocates them to block numbers accordingly. It also includes a mechanism for deallocating memory when a process completes. The simulation runs for a set number of time units(as per given by the user) and records metrics related to memory fragmentation and wasted memory blocks.
 
 *NOTE: The other two memory allocation algorithms - Best-Fit and Worst-Fit have also been included.*
 
