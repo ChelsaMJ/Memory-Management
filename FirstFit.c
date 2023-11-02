@@ -35,7 +35,7 @@ memory[i] = 0;
 }
 
 int main() {
-srand(time(NULL));
+
 int simulation_time;
 printf("Enter the simulation time: ");
 scanf("%d", &simulation_time);
